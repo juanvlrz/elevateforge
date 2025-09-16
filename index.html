@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="https://i.imgur.com/jz6xdOw.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hub do Torneio Elevate Forge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --color-bg-deep: #050608;
+        --color-bg-primary: #101114;
+        --color-bg-secondary: #16181D;
+        --color-border: #252830;
+        
+        --color-primary: #FF073A;
+        --color-secondary: #00FFFF; /* Electric Cyan */
+        --color-primary-glow: rgba(255, 7, 58, 0.25);
+        --color-secondary-glow: rgba(0, 255, 255, 0.25);
+
+        --color-text-primary: #F1F5F9;
+        --color-text-secondary: #94A3B8;
+        --color-text-muted: #4B5563;
+
+        --font-family-headings: 'Exo 2', sans-serif;
+        --font-family-body: 'Poppins', sans-serif;
+      }
+      
+      body {
+        font-family: var(--font-family-body);
+        color: var(--color-text-primary);
+        overflow-y: scroll;
+      }
+      
+      .background-layers {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-color: var(--color-bg-deep);
+        overflow: hidden;
+      }
+
+      #root {
+        position: relative;
+        z-index: 2; /* Ensure content is above the background */
+      }
+
+      .background-layers::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: radial-gradient(ellipse at center, transparent 40%, var(--color-bg-deep) 85%);
+        z-index: 5; /* On top of stars and mountains */
+      }
+      
+      /* Starry Sky Animation */
+      @keyframes move-bg {
+        from { background-position-x: 0; }
+        to { background-position-x: 10000px; }
+      }
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 0.8; }
+      }
+
+      /* Star Layers */
+      #stars1, #stars2, #twinkling {
+        position: absolute;
+        top: 0; left: 0;
+        right: 0; bottom: 0;
+        width: 100%; height: 100%;
+        display: block;
+        background-repeat: repeat;
+        z-index: 0; /* Behind mountains */
+      }
+      
+      #stars1 {
+        background-image: 
+          radial-gradient(1px 1px at 10% 30%, white, transparent),
+          radial-gradient(1px 1px at 80% 40%, white, transparent),
+          radial-gradient(1px 1px at 50% 90%, white, transparent);
+        background-size: 400px 400px;
+        animation: move-bg 200s linear infinite;
+      }
+      
+      #stars2 {
+        background-image: 
+          radial-gradient(1.5px 1.5px at 20% 70%, white, transparent),
+          radial-gradient(1.5px 1.5px at 90% 60%, white, transparent),
+          radial-gradient(1.5px 1.5px at 40% 10%, white, transparent);
+        background-size: 600px 600px;
+        animation: move-bg 150s linear infinite reverse;
+      }
+
+      #twinkling {
+        background-image: 
+          radial-gradient(2px 2px at 30% 50%, white, transparent),
+          radial-gradient(2px 2px at 70% 20%, white, transparent),
+          radial-gradient(2px 2px at 5% 80%, white, transparent);
+        background-size: 500px 500px;
+        animation: move-bg 100s linear infinite, twinkle 4s ease-in-out infinite;
+      }
+
+      .mountain {
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 200vw;
+        height: 60vh;
+        background: linear-gradient(to top, rgba(22, 24, 29, 0.5), transparent);
+        animation: pan-mountain 120s linear infinite;
+      }
+
+      .mountain-1 {
+        clip-path: polygon(0 100%, 0 80%, 15% 65%, 30% 85%, 45% 55%, 60% 75%, 75% 40%, 90% 60%, 100% 45%, 100% 100%);
+        z-index: 3;
+        background: linear-gradient(to top, #111318, transparent);
+        animation-duration: 250s;
+      }
+      .mountain-2 {
+        clip-path: polygon(0 100%, 0 70%, 10% 85%, 25% 60%, 40% 80%, 55% 50%, 70% 70%, 85% 45%, 100% 65%, 100% 100%);
+        z-index: 2;
+        background: linear-gradient(to top, #0c0e12, transparent);
+        animation-duration: 200s;
+        opacity: 0.8;
+      }
+      .mountain-3 {
+        clip-path: polygon(0 100%, 0 85%, 20% 70%, 35% 88%, 50% 65%, 65% 80%, 80% 60%, 95% 75%, 100% 70%, 100% 100%);
+        z-index: 1;
+        background: linear-gradient(to top, #08090c, transparent);
+        animation-duration: 150s;
+        opacity: 0.6;
+      }
+
+      @keyframes pan-mountain {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: var(--color-bg-deep); }
+      ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+      
+      .font-heading {
+        font-family: var(--font-family-headings);
+      }
+
+      .card {
+        background-color: rgba(22, 24, 29, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--color-border);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+      }
+      
+      .card:hover {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 25px var(--color-primary-glow);
+      }
+      
+      .decider-glow {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 25px var(--color-primary-glow);
+      }
+
+      .pulsate-glow {
+        animation: pulse-glow 2.5s infinite ease-in-out;
+        border-color: var(--color-secondary);
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% {
+          box-shadow: 0 0 15px var(--color-secondary-glow), 0 0 5px var(--color-secondary);
+        }
+        50% {
+          box-shadow: 0 0 30px var(--color-secondary-glow), 0 0 10px var(--color-secondary);
+        }
+      }
+      
+      .title-line {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 0.75rem;
+      }
+      .title-line::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--color-primary);
+        border-radius: 2px;
+        box-shadow: 0 0 15px var(--color-primary-glow);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm"
+  }
+}
+</script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          borderRadius: {
+            'lg': '0.5rem',
+            'xl': '0.75rem',
+          },
+          fontFamily: {
+            headings: ['Exo 2', 'sans-serif'],
+            body: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            'bg-deep': 'var(--color-bg-deep)',
+            'bg-primary': 'var(--color-bg-primary)',
+            'bg-secondary': 'var(--color-bg-secondary)',
+            'border-primary': 'var(--color-border)',
+            'primary': 'var(--color-primary)',
+            'secondary': 'var(--color-secondary)',
+            'text-primary': 'var(--color-text-primary)',
+            'text-secondary': 'var(--color-text-secondary)',
+            'text-muted': 'var(--color-text-muted)',
+          }
+        }
+      }
+    }
+  </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="text-text-primary">
+    <div class="background-layers">
+      <div id="stars1"></div>
+      <div id="stars2"></div>
+      <div id="twinkling"></div>
+      <div class="mountain mountain-3"></div>
+      <div class="mountain mountain-2"></div>
+      <div class="mountain mountain-1"></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
