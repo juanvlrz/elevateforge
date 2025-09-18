@@ -65,7 +65,7 @@ export const BracketSection: React.FC<BracketSectionProps> = ({ matches }) => {
         <div className="w-full lg:w-1/4 flex flex-col items-center">
             <h3 className="font-heading text-xl font-bold text-center text-primary mb-6 uppercase tracking-wider">Final</h3>
             <div className="flex items-center h-full w-full max-w-xs">
-                <Matchup teamA="Vencedor SF1" teamB="Vencedor SF2" isFinal />
+                <Matchup teamA="TIME A" teamB="Vencedor SF2" isFinal />
             </div>
         </div>
         
