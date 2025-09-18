@@ -18,7 +18,7 @@ const playersWithAvatars = [
   { name: 'royal', twitter: 'https://twitter.com/RoyalBRNA', avatarUrl: 'https://media.valorant-api.com/agents/a3bfb853-43b2-7238-a4f1-ad90e9e46bcc/displayicon.png' }, // Reyna
   { name: 'akshinho', twitter: 'https://twitter.com/akshinho', avatarUrl: 'https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/displayicon.png' }, // Raze
   { name: 'Theuzvlrr', twitter: 'https://twitter.com/Theuzvlrr', avatarUrl: 'https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/displayicon.png' }, // Phoenix
-  { name: 'Trsv', twitter: 'https://twitter.com/trvsvlr', avatarUrl: 'https://media.valorant-api.com/agents/7f94d92c-4234-0a36-9646-3a87eb8b5c89/displayicon.png' }, // Yoru
+  { name: 'Jow', twitter: 'https://twitter.com/trvsvlr', avatarUrl: 'https://media.valorant-api.com/agents/7f94d92c-4234-0a36-9646-3a87eb8b5c89/displayicon.png' }, // Yoru
   
   // TEAM B
   { name: 'cxioziN', twitter: 'https://twitter.com/caiozinvlr', avatarUrl: 'https://media.valorant-api.com/agents/8e253930-4c05-31dd-1b6c-968525494517/displayicon.png' }, // Omen
