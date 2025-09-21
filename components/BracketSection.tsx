@@ -80,7 +80,7 @@ export const BracketSection: React.FC<BracketSectionProps> = ({ matches }) => {
             <div className="flex items-center h-full w-full max-w-xs">
                 <div className="card relative flex flex-col items-center justify-center w-full h-32 p-4 border-primary/50">
                     <TrophyIcon className="w-12 h-12 text-primary mb-2" style={{filter: 'drop-shadow(0 0 10px var(--color-primary-glow))'}} />
-                    <p className="font-heading text-lg font-bold">A ser definido</p>
+                    <p className="font-heading text-lg font-bold">TIME B</p>
                 </div>
             </div>
         </div>
